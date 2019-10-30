@@ -118,8 +118,14 @@
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>E:/UnityWorkspace/Handle The Candle/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+      <HintPath>E:/UnityWorkspace/Handle The Candle/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/UnityWorkspace/Handle The Candle/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder">
+      <HintPath>E:/UnityWorkspace/Handle The Candle/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Lightweight.Runtime">
       <HintPath>E:/UnityWorkspace/Handle The Candle/Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Runtime.dll</HintPath>

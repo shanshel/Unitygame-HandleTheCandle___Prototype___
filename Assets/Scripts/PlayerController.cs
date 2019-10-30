@@ -4,31 +4,87 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Player Options
     public float speed = 5f, dashPower = 5f;
-
     public bool flipX, flipY;
-    int xControlValue = 1;
-    int yControlValue = 1;
+    public float torchTime;
+    public TextMesh torchText;
+
+
+    //Components
     Rigidbody2D _rigidBody;
     SpriteRenderer _sprite;
-    // Start is called before the first frame update
+
+    //Flipping
+    int xControlValue = 1;
+    int yControlValue = 1;
+
+    //TimeScale
+    float localTimeScale;
+
+
+    bool isCharacterDied = false;
+
+    private void Awake()
+    {
+        initComponents();
+    }
+
     void Start()
     {
+        setLocalTimeScale();
+        initCharacterFlipping();
+        initStepSound();
+        initTorchTimer();
+    }
+
+    void initComponents()
+    {
+        _sprite = GetComponent<SpriteRenderer>();
         _rigidBody = GetComponent<Rigidbody2D>();
-       
+    }
+
+    void setLocalTimeScale(float timeScale = 1f)
+    {
+        localTimeScale = timeScale;
+    }
+
+    void initCharacterFlipping()
+    {
+        float xRotate = 0f, yRotate = 0f;
         if (flipX)
         {
             xControlValue = -1;
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            yRotate = 180f;
         }
         if (flipY)
         {
             yControlValue = -1;
             transform.rotation = Quaternion.Euler(180f, 0f, 0f);
+            xRotate = 180f;
         }
+        torchText.gameObject.transform.Rotate(new Vector2(xRotate, yRotate));
 
+    }
+
+    void initStepSound()
+    {
         InvokeRepeating("stepSfxCheck", 0.0f, 0.15f);
     }
+
+    void initTorchTimer()
+    {
+        if (torchTime != 0f)
+        {
+            InvokeRepeating("torchTimerCheckLazy", 0f, 1f);
+        }
+        else
+        {
+            torchText.gameObject.SetActive(false);
+        }
+    }
+
 
     // Update is called once per frame
     int lastDirection, lockedDirection;
@@ -41,11 +97,13 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        if (doorPushBackTimer > 0f)
+     
+
+        if (doorPushBackTimer > 0f || isCharacterDied)
         {
             return;
         }
-        if (Input.GetKey(KeyCode.Space) && dashCooldownTimer <= 0f)
+        if (Input.GetKey(KeyCode.Space) && dashCooldownTimer <= 0f && localTimeScale == 1f)
         {
             dashTimer = dashTime;
             dashCooldownTimer = dashCooldownTime;
@@ -55,6 +113,10 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
+
+
+
 
     void movementCheck()
     {
@@ -89,7 +151,7 @@ public class PlayerController : MonoBehaviour
             Vector2 movement = new Vector2(horz, vetical);
             lastMoveDir = movement;
             Vector2 position = _rigidBody.position;
-            Vector2 disiredPosition = position + movement * speed * Time.deltaTime;
+            Vector2 disiredPosition = position + movement * speed * Time.deltaTime * localTimeScale;
             velocity = (_rigidBody.position - lastPosition) * 50;
            
             lastPosition = _rigidBody.position;
@@ -102,19 +164,15 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (isCharacterDied) return;
         movementCheck();
-        audioUpdate();
+
     }
 
     bool isWalking = false;
     float runWalkSFXTime = .8f;
     float runWalkSFXTimer = 0f;
-    void audioUpdate()
-    {
- 
 
-     
-    }
 
 
 
@@ -161,6 +219,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void onPlayerPassThrowDoor()
+    {
+        localTimeScale = 0.3f;
+        AudioManager.singlton.playSFX(Enums.SFXEnum.playerPassDoor);
+    }
+
+    public void onPlayerLeaveDoor()
+    {
+        localTimeScale = 1f;
+    }
+
 
 
     void stepSfxCheck()
@@ -183,4 +252,37 @@ public class PlayerController : MonoBehaviour
 
 
 
+    //-------------------------- Torch ------------------------------
+    void torchTimerCheckLazy()
+    {
+        if (torchTime > 0)
+        {
+            torchTime -= 1f;
+            torchText.text = Mathf.CeilToInt(torchTime).ToString();
+        }
+        else
+        {
+            CancelInvoke("torchTimerCheckLazy");
+            onPlayerTorchTimeEnd();
+        }
+    }
+
+    void onPlayerTorchTimeEnd()
+    {
+        die();
+    }
+
+
+    void die()
+    {
+        _sprite.color = Color.black;
+        isCharacterDied = true;
+        AudioManager.singlton.playSFX(Enums.SFXEnum.characterDieSFX);
+    }
+
+
+    public Color getCharacterColor()
+    {
+        return _sprite.color;
+    }
 }

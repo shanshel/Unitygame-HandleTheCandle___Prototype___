@@ -7,10 +7,21 @@ public class GoalZone : MonoBehaviour
 
     public PlayerController _character;
     BoxCollider2D _boxCollider;
+    public GameObject torch;
 
+    SpriteRenderer _sprite;
+    Color __characterColorCache;
+
+    public SpriteRenderer circle;
     private void Start()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
+        _sprite = GetComponent<SpriteRenderer>();
+        __characterColorCache = _character.getCharacterColor();
+
+
+        _sprite.color = __characterColorCache;
+        circle.color = __characterColorCache;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,6 +37,7 @@ public class GoalZone : MonoBehaviour
                 Destroy(_hitPlayer.gameObject);
                 GameManager.singelton.playerReachGoalZone(_hitPlayer);
                 AudioManager.singlton.playSFX(Enums.SFXEnum.playerReachGoolSFX);
+                torch.SetActive(true);
 
             }
         }

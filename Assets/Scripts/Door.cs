@@ -5,19 +5,31 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public PlayerController[] playersCanPush;
-    BoxCollider2D _boxCollider;
+    public BoxCollider2D _innerCollider, outterCollider;
+    SpriteRenderer _sprite;
 
+    public ParticleSystem leaveUpVFX, leaveDownVFX;
     private void Start()
     {
-        _boxCollider = GetComponent<BoxCollider2D>();
+        _sprite = GetComponent<SpriteRenderer>();
 
+        if (playersCanPush.Length == 1)
+        {
+            _sprite.color = playersCanPush[0].getCharacterColor();
+        }
+        
+        var ps = leaveUpVFX.main;
+        var ps2 = leaveDownVFX.main;
+        ps.startColor = _sprite.color;
+        ps2.startColor = _sprite.color;
         for (int x = 0; x < playersCanPush.Length; x++)
         {
-            Physics2D.IgnoreCollision(_boxCollider, playersCanPush[x].GetComponent<CapsuleCollider2D>());
-
+            Physics2D.IgnoreCollision(outterCollider, playersCanPush[x].GetComponent<CapsuleCollider2D>());
         }
         
     }
+
+   
 
     Vector2 pushTo;
 
@@ -31,6 +43,38 @@ public class Door : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        if (player != null)
+        {
+            player.onPlayerPassThrowDoor();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+        if (player != null)
+        {
+
+   
+
+            player.onPlayerLeaveDoor();
+            if (transform.position.y > player.transform.position.y)
+            {
+                leaveDownVFX.Play();
+            }
+            else
+            {
+                leaveUpVFX.Play();
+            }
   
- 
+        
+
+            
+        }
+    }
+
+
 }

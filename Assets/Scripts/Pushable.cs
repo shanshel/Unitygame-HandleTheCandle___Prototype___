@@ -8,8 +8,14 @@ public class Pushable : MonoBehaviour
     public PlayerController[] playersCanPush;
     Rigidbody2D _rigidBody;
     PlayerController currentPlayerInTouch;
+
+    public SpriteRenderer _sprite;
+    public ParticleSystem moveVFX;
     private void Start()
     {
+       
+        var ps = moveVFX.main;
+        ps.startColor = _sprite.color;
         _rigidBody = GetComponent<Rigidbody2D>();
         _rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
     }

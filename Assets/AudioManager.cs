@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
 
     public static AudioManager singlton;
-    public AudioSource step1, step2, dash,
+    public AudioSource step1, step2, dash, playerPassDoor, die,
         pushedBackByDoorEarly,
         touchWallSFX,
         passThrowDoorSFX,
@@ -67,6 +67,12 @@ public class AudioManager : MonoBehaviour
                 break;
             case SFXEnum.dashSFX:
                 audio = dash;
+                break;
+            case SFXEnum.playerPassDoor:
+                audio = playerPassDoor;
+                break;
+            case SFXEnum.characterDieSFX:
+                audio = die;
                 break;
 
 
