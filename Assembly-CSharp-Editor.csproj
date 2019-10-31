@@ -62,6 +62,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_AutoRig.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_BlendShapeEditor.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_BoneCreation.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_CreateBlendShape.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_CreateControls.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_CreatePolygonFromSprite.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_Editor.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_EditSkinWeightsEditor.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_FFD.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_FFDLineDisplayEditor.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_GlobalControlEditor.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_HiddenBoneEditor.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_IKHandleEditor.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_Selection.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_SkinCluster.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_Skinning.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_SortingLayerEditor.cs" />
+    <Compile Include="Assets\Puppet2D\Scripts\Editor\Puppet2D_Spline.cs" />
     <Compile Include="Assets\TopDownEngine\ThirdParty\MoreMountains\MMFeedbacks\MMFeedbacks\Core\Editor\AttributeDrawers.cs" />
     <Compile Include="Assets\TopDownEngine\ThirdParty\MoreMountains\MMFeedbacks\MMFeedbacks\Core\Editor\MMFeedbacksEditor.cs" />
     <Compile Include="Assets\TopDownEngine\ThirdParty\MoreMountains\MMFeedbacks\MMFeedbacks\Core\Editor\MMFeedbackStyling.cs" />

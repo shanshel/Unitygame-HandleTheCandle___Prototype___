@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/LevelSelection.unity
+- path: Assets/Puppet2D/Demo/Scene/PuppetbotScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
