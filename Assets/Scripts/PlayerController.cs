@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour
     public bool flipX, flipY;
     public float torchTime;
     public TextMesh torchText;
+    public BoxCollider2D privateCollider;
 
 
     //Components
     Rigidbody2D _rigidBody;
     SpriteRenderer _sprite;
+    Animator _animator;
 
     //Flipping
     int xControlValue = 1;
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         _sprite = GetComponent<SpriteRenderer>();
         _rigidBody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     void setLocalTimeScale(float timeScale = 1f)
@@ -117,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-
+    Vector2 lookDirection = new Vector2(0, 0);
     void movementCheck()
     {
 
@@ -150,6 +153,16 @@ public class PlayerController : MonoBehaviour
 
             Vector2 movement = new Vector2(horz, vetical);
             lastMoveDir = movement;
+
+
+            if (!Mathf.Approximately(movement.x, 0.0f) || !Mathf.Approximately(movement.y, 0.0f))
+            {
+                lookDirection.Set(movement.x, movement.y);
+                lookDirection.Normalize();
+                _animator.SetFloat("Look X", lookDirection.x);
+                _animator.SetFloat("Look Y", lookDirection.y);
+            }
+
             Vector2 position = _rigidBody.position;
             Vector2 disiredPosition = position + movement * speed * Time.deltaTime * localTimeScale;
             velocity = (_rigidBody.position - lastPosition) * 50;
@@ -157,8 +170,12 @@ public class PlayerController : MonoBehaviour
             lastPosition = _rigidBody.position;
             _rigidBody.MovePosition(disiredPosition);
 
+         
+            _animator.SetFloat("Speed", movement.magnitude);
+
         }
 
+       
 
         dashCooldownTimer -= Time.fixedDeltaTime;
     }
@@ -219,8 +236,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void onPlayerPassThrowDoor()
+    public void onPlayerPassThrowDoor(bool isPushBack = false)
     {
+        if (isPushBack)
+        {
+            privateCollider.enabled = true;
+            return;
+        }
+
         localTimeScale = 0.3f;
         AudioManager.singlton.playSFX(Enums.SFXEnum.playerPassDoor);
     }
@@ -228,6 +251,7 @@ public class PlayerController : MonoBehaviour
     public void onPlayerLeaveDoor()
     {
         localTimeScale = 1f;
+        privateCollider.enabled = false;
     }
 
 

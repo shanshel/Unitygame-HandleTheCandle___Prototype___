@@ -11,15 +11,33 @@ public class Pushable : MonoBehaviour
 
     public SpriteRenderer _sprite;
     public ParticleSystem moveVFX;
+    Color mainColor;
     private void Start()
     {
-       
-        var ps = moveVFX.main;
-        ps.startColor = _sprite.color;
+
+        setupColors();
         _rigidBody = GetComponent<Rigidbody2D>();
         _rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
+    void setupColors()
+    {
+        if (playersCanPush.Length == 1)
+        {
+            mainColor = playersCanPush[0].getCharacterColor();
+        }
+        else
+        {
+            mainColor = _sprite.color;
+        }
+
+
+        var ps = moveVFX.main;
+        _sprite.color = mainColor;
+        ps.startColor = mainColor;
+
+     
+    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
