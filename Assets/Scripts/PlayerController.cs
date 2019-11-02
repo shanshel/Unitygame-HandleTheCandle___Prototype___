@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public TextMesh torchText;
     public BoxCollider2D privateCollider;
 
+    public static PlayerController singleton;
 
     //Components
     Rigidbody2D _rigidBody;
@@ -30,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         initComponents();
+        singleton = this;
+
     }
 
     void Start()
@@ -113,6 +116,16 @@ public class PlayerController : MonoBehaviour
             AudioManager.singlton.playSFX(Enums.SFXEnum.dashSFX);
             Invoke("onPlayerDoorPushedEnd", dashTime + 0.1f);
 
+            if (lookDirection.x < 0)
+            {
+                _animator.SetTrigger("IsFlippedDash");
+
+            }
+            else
+            {
+                _animator.SetTrigger("IsDash");
+
+            }
 
         }
     }
@@ -185,6 +198,9 @@ public class PlayerController : MonoBehaviour
         movementCheck();
 
     }
+
+
+
 
     bool isWalking = false;
     float runWalkSFXTime = .8f;

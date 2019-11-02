@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1829499213403742923}
   - component: {fileID: 8966353871712268035}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400711698137240878}
   - component: {fileID: 400711698137240879}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.2
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 9f97d302
+  m_ApplyToSortingLayers: 9f97d30217358f5f
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 1664113176745498666}
   - component: {fileID: 2196313818542997306}
   - component: {fileID: 2538717168580377906}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7600194994569687976}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TorchFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6263858901258963500}
   - component: {fileID: 7726531635409932833}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: privateCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 5091768400252210892}
   - component: {fileID: 2350197349434837165}
   - component: {fileID: 2810851603120098448}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TorchTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 8397911887628548125}
   - component: {fileID: 7964129708937999433}
   - component: {fileID: 4632526383439015151}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DungeonTorches_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,8 +566,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1603220759
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2b627e75975d975428eaa07a643eb6be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 1875460652113008291}
   - component: {fileID: 2964208160994481243}
   - component: {fileID: 2379262452526551573}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MoveEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
