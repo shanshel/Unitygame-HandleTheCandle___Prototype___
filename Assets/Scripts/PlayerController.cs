@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     //Player Options
     public float speed = 5f, dashPower = 5f;
     public bool flipX, flipY;
     public float torchTime;
     public TextMesh torchText;
     public BoxCollider2D privateCollider;
-
-    public static PlayerController singleton;
+    public bool isUnkownColor;
 
     //Components
     Rigidbody2D _rigidBody;
@@ -28,19 +29,46 @@ public class PlayerController : MonoBehaviour
 
     bool isCharacterDied = false;
 
+
+    int lastDirection, lockedDirection;
+
+    float dashTime = 0.2f, dashTimer = 0f;
+    float dashCooldownTimer = 0f, dashCooldownTime = .8f;
+    Vector2 lastMoveDir, lastPosition, velocity;
+
+    float doorPushBackTimer, doorPushPower;
+
+
+    //Bases
+    Vector3 baseScale;
+    float baseMass, baseDashPower;
+    Color baseColor;
+    
+
+    //UnkownColors
+    Color[] unkownColors = new Color[] { Color.blue, Color.red, Color.green, Color.yellow, Color.white, Color.cyan };
+    Color nextColor;
+    float colorTimer;
+
     private void Awake()
     {
         initComponents();
-        singleton = this;
-
+        instance = this;
+        
     }
 
     void Start()
     {
+      
         setLocalTimeScale();
         initCharacterFlipping();
         initStepSound();
         initTorchTimer();
+        initBases();
+        initUnkownColors();
+
+    
+       
     }
 
     void initComponents()
@@ -50,7 +78,7 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    void setLocalTimeScale(float timeScale = 1f)
+    public void setLocalTimeScale(float timeScale = 1f)
     {
         localTimeScale = timeScale;
     }
@@ -91,20 +119,30 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void initBases()
+    {
+        baseScale = transform.localScale;
+        baseMass = _rigidBody.mass;
+        baseColor = _sprite.color;
+        baseDashPower = dashPower;
+
+    }
+    void initUnkownColors()
+    {
+        if (isUnkownColor)
+        {
+            nextColor = Color.blue;
+            _sprite.color = Color.white;
+
+        }
+    }
 
     // Update is called once per frame
-    int lastDirection, lockedDirection;
 
-    float dashTime = 0.2f, dashTimer = 0f;
-    float dashCooldownTimer = 0f, dashCooldownTime = .8f;
-    Vector2 lastMoveDir, lastPosition, velocity;
-
-    float doorPushBackTimer, doorPushPower;
     
     void Update()
     {
-     
-
+       
         if (doorPushBackTimer > 0f || isCharacterDied)
         {
             return;
@@ -145,7 +183,7 @@ public class PlayerController : MonoBehaviour
         }
         if (dashTimer > 0f)
         {
-            _rigidBody.AddForce(lastMoveDir * dashPower, ForceMode2D.Impulse);
+            _rigidBody.AddForce(lastMoveDir * dashPower * _rigidBody.mass, ForceMode2D.Impulse);
             dashTimer -= Time.deltaTime;
             /*
             
@@ -194,9 +232,34 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+
+
+        if (torchTime > 0f)
+            torchTime -= Time.deltaTime * localTimeScale;
         if (isCharacterDied) return;
+        colorCheck();
+
+
         movementCheck();
 
+    }
+
+    void colorCheck()
+    {
+        if (isUnkownColor)
+        {
+            _sprite.color = Color.Lerp(_sprite.color, nextColor, 3f * Time.deltaTime);
+
+
+            colorTimer -= Time.deltaTime;
+            if (colorTimer <= 0f)
+            {
+                colorTimer = .8f;
+                nextColor = unkownColors[Random.Range(0, unkownColors.Length)];
+            }
+
+        }
+        
     }
 
 
@@ -295,16 +358,14 @@ public class PlayerController : MonoBehaviour
     //-------------------------- Torch ------------------------------
     void torchTimerCheckLazy()
     {
-        if (torchTime > 0)
-        {
-            torchTime -= 1f;
-            torchText.text = Mathf.CeilToInt(torchTime).ToString();
-        }
-        else
+        torchText.text = Mathf.CeilToInt(torchTime).ToString();
+
+        if (torchTime <= 0f)
         {
             CancelInvoke("torchTimerCheckLazy");
             onPlayerTorchTimeEnd();
         }
+
     }
 
     void onPlayerTorchTimeEnd()
@@ -320,9 +381,68 @@ public class PlayerController : MonoBehaviour
         AudioManager.singlton.playSFX(Enums.SFXEnum.characterDieSFX);
     }
 
+    public bool isDead()
+    {
+        return isCharacterDied;
+    }
+
+    public void revive()
+    {
+        _sprite.color = baseColor;
+        isCharacterDied = false;
+        torchText.text = "";
+    }
+
 
     public Color getCharacterColor()
     {
         return _sprite.color;
     }
+
+
+
+    public void setScale(float scale = 1f)
+    {
+        if (scale == 1f)
+        {
+            transform.localScale = baseScale;
+        }
+        else
+        {
+            transform.localScale = baseScale * scale;
+        }
+    }
+
+    public bool isScaled()
+    {
+        return baseScale != transform.localScale;
+    }
+
+
+    public void setMass(float mass = 0f)
+    {
+        if (mass == 0f)
+        {
+            _rigidBody.mass = baseMass;
+            return;
+        }
+
+        _rigidBody.mass = mass;
+    }
+   
+    public bool isTimeScaled()
+    {
+        return localTimeScale != 1f;
+    }
+
+    public void setDashPower(float power = 0f)
+    {
+        if (power == 0f)
+        {
+            dashPower = baseDashPower;
+            return;
+        }
+        dashPower = power;
+    }
+
 }

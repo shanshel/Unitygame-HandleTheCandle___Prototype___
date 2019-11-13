@@ -26,6 +26,18 @@ TextureImporter:
   - first:
       213: -1451438235679477095
     second: world512_7
+  - first:
+      213: -5898670963870448896
+    second: world512_8
+  - first:
+      213: -888423247764961269
+    second: world512_9
+  - first:
+      213: 3946541852568692372
+    second: world512_10
+  - first:
+      213: -1427161042976869733
+    second: world512_11
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -124,7 +136,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d987bf382b13d6488dd643e382d9a93
+      spriteID: 954362f6cd4c5ed4baefb69e17e09a96
       internalID: -963888041293186900
       vertices: []
       indices: 
@@ -145,7 +157,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87648302c271b82499f4d138647c6139
+      spriteID: 9db64279efd1b3e46a298d995612ab89
       internalID: -6804147313487355574
       vertices: []
       indices: 
@@ -166,7 +178,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 902ef97e57915ee43ba979092884b810
+      spriteID: ccf8ca0035bb6cb469fdb6dcdee5619d
       internalID: -1747623302270868088
       vertices: []
       indices: 
@@ -187,7 +199,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28794ae3a2c31e44bacccf6d698f239f
+      spriteID: f3d0a712a34c2a542b62c8b9be9407ea
       internalID: 2068627110884676568
       vertices: []
       indices: 
@@ -208,7 +220,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a88e4657adc69ef44baa377f1d98167d
+      spriteID: ab86c9051d7bf9d4e88b87395a582e39
       internalID: -7854697820178955119
       vertices: []
       indices: 
@@ -229,7 +241,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf04082dbaf966c40b9b8869bcf9f24c
+      spriteID: fa9219759af44354ca7e03c0f1d68ce4
       internalID: -2144805536765639212
       vertices: []
       indices: 
@@ -250,7 +262,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b933aaa98a84b542b3e5f572a432143
+      spriteID: 76b4667247f70a04aa7b63300996f6d9
       internalID: -7004436334792624073
       vertices: []
       indices: 
@@ -271,8 +283,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fdeae265f555e84d9aee363c920eda0
+      spriteID: 432f9f627de0e9248a832461ce2911bb
       internalID: -1451438235679477095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world512_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8182389577a464f4aa6810344efc8248
+      internalID: -5898670963870448896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world512_9
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15d452ab98f8b094ba44a2c8b1144abe
+      internalID: -888423247764961269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world512_10
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec0661248abce3a4eb9f15d615f92b00
+      internalID: 3946541852568692372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: world512_11
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 541f7955ecf955b40905ed0e98ed3667
+      internalID: -1427161042976869733
       vertices: []
       indices: 
       edges: []

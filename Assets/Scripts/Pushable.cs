@@ -12,12 +12,26 @@ public class Pushable : MonoBehaviour
     public SpriteRenderer _sprite;
     public ParticleSystem moveVFX;
     Color mainColor;
+
+    SpriteRenderer[] _sprites;
+
     private void Start()
     {
+
+        SpriteRenderer _sprite = GetComponent<SpriteRenderer>();
+        if (_sprite != null)
+        {
+        }
+        else
+        {
+            _sprites = GetComponentsInChildren<SpriteRenderer>();
+        }
 
         setupColors();
         _rigidBody = GetComponent<Rigidbody2D>();
         _rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+
+    
     }
 
     void setupColors()
@@ -33,7 +47,20 @@ public class Pushable : MonoBehaviour
 
 
         var ps = moveVFX.main;
-        _sprite.color = mainColor;
+
+        if (_sprites != null && _sprites.Length > 0)
+        {
+            Debug.Log("length: " + _sprites.Length);
+            for (int x = 0; x < _sprites.Length; x++)
+            {
+                _sprites[x].color = mainColor;
+            }
+        }
+        else
+        {
+            _sprite.color = mainColor;
+
+        }
         ps.startColor = mainColor;
 
      
@@ -57,8 +84,8 @@ public class Pushable : MonoBehaviour
                     if (collision.collider.gameObject.name == playersCanPush[x].gameObject.name)
                     {
                         currentPlayerInTouch = player;
+                        player.setDashPower(40f);
                         _rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-                        //_rigidBody.mass = 10f;
                     }
                 }
             }
@@ -77,6 +104,8 @@ public class Pushable : MonoBehaviour
             
             if (player.gameObject.name == currentPlayerInTouch.gameObject.name)
             {
+                player.setDashPower();
+
                 Invoke("poolFreeze", 1f);
                 
             }
@@ -86,7 +115,7 @@ public class Pushable : MonoBehaviour
 
     void poolFreeze()
     {
-        Debug.Log("freezed");
+     
         _rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 

@@ -16,7 +16,8 @@ public class Enums
         playerPushedBackByDoorSFX,
         playerReachGoolSFX,
         pushBoxSFX,
-        playerTouchPlayerSFX
+        playerTouchPlayerSFX,
+        thunderSFX
     }
     public enum MusicEnum { backgroundMusic }
 

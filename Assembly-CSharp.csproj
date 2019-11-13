@@ -62,9 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AudioManager.cs" />
-    <Compile Include="Assets\LevelManager.cs" />
-    <Compile Include="Assets\LevelPoint.cs" />
+    <Compile Include="Assets\DontDestroy.cs" />
+    <Compile Include="Assets\GravityZone.cs" />
     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_AngleLimitNode.cs" />
     <Compile Include="Assets\Puppet2D\Scripts\Puppet2d_AnimatorController.cs" />
     <Compile Include="Assets\Puppet2D\Scripts\Puppet2D_BakeAnimation.cs" />
@@ -121,16 +120,26 @@
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2D.cs" />
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Point2DList.cs" />
     <Compile Include="Assets\Puppet2D\Scripts\Triangulation\Utility\Rect2D.cs" />
+    <Compile Include="Assets\ReviveZone.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Cloud.cs" />
+    <Compile Include="Assets\Scripts\CloudSpawner.cs" />
     <Compile Include="Assets\Scripts\Door.cs" />
     <Compile Include="Assets\Scripts\Enums.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GoalZone.cs" />
+    <Compile Include="Assets\Scripts\LevelDoor.cs" />
     <Compile Include="Assets\Scripts\LevelInfo.cs" />
+    <Compile Include="Assets\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\LevelPoint.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Pushable.cs" />
     <Compile Include="Assets\Scripts\Scripts\Camera\CinemachineCameraController.cs" />
     <Compile Include="Assets\Scripts\Scripts\Camera\LevelLimits.cs" />
     <Compile Include="Assets\Scripts\Scripts\Managers\GUIManager.cs" />
+    <Compile Include="Assets\Scripts\ThunderEffect.cs" />
+    <Compile Include="Assets\SizeZone.cs" />
+    <Compile Include="Assets\Timezone.cs" />
     <Compile Include="Assets\TopDownEngine\ThirdParty\MoreMountains\MMFeedbacks\Demos\Scripts\DemoBall.cs" />
     <Compile Include="Assets\TopDownEngine\ThirdParty\MoreMountains\MMFeedbacks\MMFeedbacks\Core\MMFeedback.cs" />
     <Compile Include="Assets\TopDownEngine\ThirdParty\MoreMountains\MMFeedbacks\MMFeedbacks\Core\MMFeedbacks.cs" />

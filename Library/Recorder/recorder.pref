@@ -36,8 +36,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fde0a8ac3e6b482c95fa602e65ab045, type: 3}
   m_Name: Movie
   m_EditorClassIdentifier: 
-  enabled: 0
-  take: 4
+  enabled: 1
+  take: 9
   captureEveryNthFrame: 1
   fileNameGenerator:
     m_Path:
@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06397f605c749fe4dbe2df4bbd1ef4a1, type: 3}
   m_Name: Image Sequence
   m_EditorClassIdentifier: 
-  enabled: 1
-  take: 3
+  enabled: 0
+  take: 4
   captureEveryNthFrame: 1
   fileNameGenerator:
     m_Path:
